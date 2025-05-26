@@ -38,8 +38,7 @@ export function rechne(one, two, operator, user) {
     0,
     0,
     `[${new Date()
-      .toLocaleString()
-      .replace(/.*, /, "")}]: ${one} ${operator} ${two} = ${result} `
+      .toLocaleString()}]: ${one} ${operator} ${two} = ${result} `
   );
   saveHistory(historyFile);
   return result;
