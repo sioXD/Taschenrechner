@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
+  res.clearCookie("username");
   res.send(renderLogin(req.cookies.login));
 });
 
