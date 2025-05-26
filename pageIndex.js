@@ -46,6 +46,8 @@ export function renderIndex(result, history, user) {
       overflow-y: scroll;
       border: 1px solid #ccc;
       padding: 10px;
+      padding-left: 25px;
+      padding-right: 25px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
