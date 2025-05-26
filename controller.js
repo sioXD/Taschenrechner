@@ -48,7 +48,7 @@ app.post("/", (req, res) => {
   const result = rechne(one, two, operator, user);
   if (result === 42) {
     res.redirect("/EASTER-EGG");
-  } else if (result === 69) {
+  } else if (result === 88) { // from oo7
     res.redirect("/SECRET");
   } else {
     res.send(renderIndex(result, getHistory(user, length), user));
