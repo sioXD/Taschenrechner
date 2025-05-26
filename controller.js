@@ -1,11 +1,12 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import fs from "fs";
-import { rechne, getHistory, loadHistory } from "./rechnung.js";
+import { rechne, getHistory, loadHistory, getAllUsers } from "./rechnung.js";
 import { renderIndex } from "./pageIndex.js";
 import { renderEE } from "./pageEE.js";
 import { renderSecret } from "./pageSecret.js";
 import { renderLogin } from "./pageLogin.js";
+import { get } from "http";
 
 const app = express();
 app.use(cookieParser());
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
 
 app.get("/login", (req, res) => {
   res.clearCookie("username");
-  res.send(renderLogin(req.cookies.login));
+  res.send(renderLogin(req.cookies.login, getAllUsers()));
 });
 
 app.post("/login", (req, res) => {
@@ -48,7 +49,8 @@ app.post("/", (req, res) => {
   const result = rechne(one, two, operator, user);
   if (result === 42) {
     res.redirect("/EASTER-EGG");
-  } else if (result === 88) { // from oo7
+  } else if (result === 88) {
+    // from oo7
     res.redirect("/SECRET");
   } else {
     res.send(renderIndex(result, getHistory(user, length), user));

@@ -37,8 +37,7 @@ export function rechne(one, two, operator, user) {
   history[user].splice(
     0,
     0,
-    `[${new Date()
-      .toLocaleString()}]: ${one} ${operator} ${two} = ${result} `
+    `[${new Date().toLocaleString()}]: ${one} ${operator} ${two} = ${result} `
   );
   saveHistory(historyFile);
   return result;
@@ -66,4 +65,8 @@ export function loadHistory(historyFileConfig) {
     fs.writeFileSync(historyFileConfig, JSON.stringify({}));
     historyFile = historyFileConfig;
   }
+}
+
+export function getAllUsers() {
+  return Object.keys(history);
 }
