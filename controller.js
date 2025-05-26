@@ -6,16 +6,15 @@ import { renderIndex } from "./pageIndex.js";
 import { renderEE } from "./pageEE.js";
 import { renderSecret } from "./pageSecret.js";
 import { renderLogin } from "./pageLogin.js";
-let config = JSON.parse(fs.readFileSync("config.json"));
 
 const app = express();
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 // config
-const port = config.port || 3000;
-const length = config.historyLength || 5;
-const historyFile = config.historyFile || "";
+const port = 3000;
+const length = 50;
+const historyFile = "history.json";
 loadHistory(historyFile);
 
 // load site
