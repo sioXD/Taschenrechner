@@ -4,8 +4,7 @@ export function renderIndex(result, history, user) {
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematischer Super Rechner</title>
-    </head>
-     <style>
+<style>
       body {
         text-align: center;
         background-color: #f0f0f0;
@@ -50,21 +49,42 @@ export function renderIndex(result, history, user) {
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
+    .cookie {
+      margin-top: 20px;
+    }
 
     @media (max-width: 600px) {
-          input[type="text"],
-          select {
-            flex: 100%;
-            min-width: unset;
-          }
+      input{
+        width: 30%;
+        max-width: 300px;
+      }
+      select {
+        width: 20%;
+        max-width: 300px;
+      }
 
-          form {
-            flex-direction: column;
-            align-items: center;
-          }
-        }
-     
+      .button {
+        width: 80%;
+        max-width: 300px;
+        margin-top: 20px;
+      }
+
+      form {
+        flex-direction: column;
+        align-items: center;
+      }
+      .history {
+        width: 90%;
+        max-width: 300px;
+      }
+
+      .login {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }     
     </style>
+    </head>
       <body>
         <h1>Mathematischer Super Rechner</h1>
         <form action="/" method="post">
