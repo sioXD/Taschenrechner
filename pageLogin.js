@@ -29,8 +29,16 @@ export function renderLogin(login) {
           button:hover {
             background-color: #218838;
           }
-        </style>
+          @media (max-width: 400px) {
+            form {
+              padding: 15px;
+            }
 
+            button {
+              font-size: 14px;
+            }
+          }
+        </style>
       </head>
       <body>
         <h1>Login</h1>
