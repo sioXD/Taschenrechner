@@ -41,13 +41,11 @@ export function renderIndex(result, history, user) {
       text-align: left;
       margin: 0 auto;
       margin-top: 10px;
-      width: 300px;
+      width: 450px;
       height: 200px;
       overflow-y: scroll;
       border: 1px solid #ccc;
       padding: 10px;
-      padding-left: 25px;
-      padding-right: 25px;
       background-color: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
