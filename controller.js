@@ -67,6 +67,8 @@ app.get("/SECRET", (req, res) => {
   }
 });
 
+export default app;
+
 app.listen(port, () => {
   console.log(`Server läuft unter http://localhost:${port}`);
 });
