@@ -1,0 +1,72 @@
+import express from "express";
+import cookieParser from "cookie-parser";
+import fs from "fs";
+import { rechne, getHistory, loadHistory } from "./rechnung.js";
+import { renderIndex } from "./pageIndex.js";
+import { renderEE } from "./pageEE.js";
+import { renderSecret } from "./pageSecret.js";
+import { renderLogin } from "./pageLogin.js";
+let config = JSON.parse(fs.readFileSync("config.json"));
+
+const app = express();
+app.use(cookieParser());
+app.use(express.urlencoded({ extended: true }));
+
+// config
+const port = config.port || 3000;
+const length = config.historyLength || 5;
+const historyFile = config.historyFile || "";
+loadHistory(historyFile);
+
+// load site
+app.get("/", (req, res) => {
+  const user = req.cookies.username;
+  if (!user) {
+    res.cookie("login", "false", { maxAge: 1000 });
+    return res.redirect("/login");
+  }
+  res.send(renderIndex("", getHistory(user, length), user));
+});
+
+app.get("/login", (req, res) => {
+  res.send(renderLogin(req.cookies.login));
+});
+
+app.post("/login", (req, res) => {
+  res.cookie("username", req.body.username);
+  // console.log(`User ${req.body.username} logged in.`);
+  res.redirect("/");
+});
+
+// POST-request
+app.post("/", (req, res) => {
+  if (!req.cookies.username) {
+    return res.redirect("/login");
+  }
+  const user = req.cookies.username;
+  const { one, two, operator } = req.body;
+  const result = rechne(one, two, operator, user);
+  if (result === 42) {
+    res.redirect("/EASTER-EGG");
+  } else if (result === 69) {
+    res.redirect("/SECRET");
+  } else {
+    res.send(renderIndex(result, getHistory(user, length), user));
+  }
+});
+
+app.get("/EASTER-EGG", (req, res) => {
+  res.send(renderEE());
+});
+
+app.get("/SECRET", (req, res) => {
+  if (req.cookies.username === " ") {
+    res.send(renderSecret());
+  } else {
+    res.redirect("/");
+  }
+});
+
+app.listen(port, () => {
+  console.log(`Server läuft unter http://localhost:${port}`);
+});
