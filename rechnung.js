@@ -68,5 +68,5 @@ export function loadHistory(historyFileConfig) {
 }
 
 export function getAllUsers() {
-  return Object.keys(history);
+  return Object.keys(history).reverse();
 }
