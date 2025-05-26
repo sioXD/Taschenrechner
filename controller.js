@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 // config
 const port = 3000;
 const length = 50;
-const historyFile = "history.json";
+const historyFile = "";
 loadHistory(historyFile);
 
 // load site
